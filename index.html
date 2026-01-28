@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Orçamento de Pintura Profissional</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(120deg, #1e3c72, #2a5298);
+            margin:0;
+            padding:0;
+        }
+
+        .container{
+            width: 400px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        }
+
+        h2{
+            text-align:center;
+            margin-bottom:20px;
+        }
+
+        input, select{
+            width:100%;
+            padding:10px;
+            margin:8px 0;
+            border-radius:5px;
+            border:1px solid #ccc;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            background:#2a5298;
+            color:white;
+            border:none;
+            border-radius:5px;
+            font-size:16px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#1e3c72;
+        }
+
+        .titulo{
+            text-align:center;
+            color:white;
+            padding:20px;
+            font-size:28px;
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="titulo">
+    Solicite seu Orçamento de Pintura
+</div>
+
+<div class="container">
+    <h2>Preencha os dados</h2>
+
+    <form action="/enviar" method="post">
+        <input type="text" name="nome" placeholder="Seu nome" required>
+        <input type="text" name="telefone" placeholder="Telefone / WhatsApp" required>
+
+        <select name="servico">
+            <option>Pintura Interna</option>
+            <option>Pintura Externa</option>
+            <option>Textura</option>
+            <option>Reforma Completa</option>
+        </select>
+
+        <input type="text" name="local" placeholder="Local da obra">
+        <input type="text" name="prazo" placeholder="Prazo desejado">
+
+        <label>Data de Início</label>
+        <input type="date" name="data_inicio">
+
+        <label>Data de Término</label>
+        <input type="date" name="data_fim">
+
+        <button type="submit">Enviar Orçamento</button>
+    </form>
+</div>
+
+</body>
+</html>
