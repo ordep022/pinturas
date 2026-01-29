@@ -1,13 +1,17 @@
+import os
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
-import os
 
 app = Flask(__name__)
 
-# ===== CORREÇÃO SUPABASE / RENDER =====
+# ===== CONFIGURAÇÃO DO BANCO (Supabase / Render) =====
 database_url = os.getenv("DATABASE_URL")
 
-if database_url and database_url.startswith("postgres://"):
+if not database_url:
+    raise RuntimeError("DATABASE_URL não encontrada no ambiente!")
+
+# Corrige problema do postgres://
+if database_url.startswith("postgres://"):
     database_url = database_url.replace("postgres://", "postgresql://", 1)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = database_url
@@ -27,7 +31,7 @@ class Orcamento(db.Model):
     data_fim = db.Column(db.String(50))
     valor = db.Column(db.String(50))
 
-# ===== CRIA TABELA AUTOMATICAMENTE =====
+# ===== CRIAR TABELA AUTOMATICAMENTE =====
 with app.app_context():
     db.create_all()
 
@@ -52,9 +56,10 @@ def enviar():
     db.session.commit()
     return redirect('/')
 
-# ===== INICIAR SERVIDOR =====
+# ===== INICIAR LOCAL =====
 if __name__ == '__main__':
     app.run(debug=True)
+
 
 
 
